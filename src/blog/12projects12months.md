@@ -1,6 +1,6 @@
 ---
 title: 12 projects in 12 months
-date: 2022-01-02
+date: 2022-01-09
 description: Making 12 projects in 12 months
 ---
 

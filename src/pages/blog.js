@@ -12,30 +12,52 @@ import Contact from "../components/Contact"
 
 import _JSXStyle from "styled-jsx/style"
 
-function List({posts}) {
+function PostPreview({post}) {
 
+  const theme = useContext(ThemeContext);
+	return (
+		<div className="post">
+			<h2 className="title">{post.title}</h2>
+			<p>{post.description}</p>
+			<span className="date">{post.date}</span>
+			<style jsx>{`
+				.post {
+					border-top: 1px solid grey;
+					padding: 8px;
+				}
+
+				.post:hover {
+					background-color: rgb(75, 75, 75);
+				}
+
+				.date {
+					display: block;
+					font-size: 0.75rem;
+					margin-bottom: 8px;
+					color:  ${theme.selected.text};
+					opacity: 0.5;
+				}
+			`}</style>
+		</div>
+	) 
+}
+
+function List({posts}) {
   const theme = useContext(ThemeContext);
 
   return (
     <div className="list-wrapper">
       <div className="list">
-        <h1>Resources</h1>
-        <p>Explaining, teaching, sharing.</p>
-        <p>{posts.length} resource{posts.length > 1 ? "s" : ""}.</p>
-        <table>
+        <h1>Blog</h1>
+        <p>My progress</p>
+        <p>{posts.length} post{posts.length > 1 ? "s" : ""}.</p>
+        <div className='posts'>
           {posts.map((post) => (
             <Link to={post.fields.slug}>
-              <tr key={post.id}>
-                <td>
-                    <span>{post.frontmatter.title}</span>
-                </td>
-                <td>
-                  <span>{post.frontmatter.description}</span>
-                </td>
-              </tr>
+			  <PostPreview post={post.frontmatter}/>
             </Link>
           ))}
-        </table>
+        </div>
       </div>
       <style jsx>{`
         .list-wrapper {
@@ -57,33 +79,7 @@ function List({posts}) {
           color: ${theme.selected.text};
         }
 
-        table, td, tr
-        {
-          padding: 16px;
-
-          border-collapse: collapse;
-          border: 0px solid grey;
-          
-        }
-
-        tr {
-          border-top: 1px solid grey;
-          
-        }
-
-        tr:hover {
-          background-color: rgb(100, 120, 120);
-        }
-
-        table {
-          width: 100%;
-        }
-
-        tr {
-          white-space: nowrap
-        }
-
-        td:nth-child(2) {
+        .posts {
           width: 100%;
         }
       `}</style>
@@ -117,7 +113,7 @@ const Posts = ({data}) => {
 
 export const query = graphql`
   query {
-      allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/.\/posts\/./"}}) {
+      allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/.\/blog\/./"}}) {
           nodes {
               html
               frontmatter {
