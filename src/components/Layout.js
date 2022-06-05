@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
       <Helmet>
           <title>Xavier "Vyn" Esnault</title>
           <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
-		  <script defer data-domain="cronarium.com" src="https://cronarium.com/plausible"></script>
+		  <script defer data-domain="xesnault.dev" src="https://cronarium.com/plausible"></script>
       </Helmet>
       <ThemeContext.Provider value={{selected: currentTheme, toggle: toggleTheme}}>
         <LanguageContext.Provider value={{id: language, text: languages[language]}}>
