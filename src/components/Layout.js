@@ -65,6 +65,7 @@ const Layout = ({ children }) => {
       <Helmet>
           <title>Xavier "Vyn" Esnault</title>
           <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+		  <script defer data-domain="xesnault.dev" src="https://xesnault.com/plausible"></script>
       </Helmet>
       <ThemeContext.Provider value={{selected: currentTheme, toggle: toggleTheme}}>
         <LanguageContext.Provider value={{id: language, text: languages[language]}}>
